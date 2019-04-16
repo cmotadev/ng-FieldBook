@@ -1,0 +1,76 @@
+<md-dialog>
+    <form name="stationForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Mark Station</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-icon="cancel" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content layout-padding>
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Datum</label>
+                    <md-select ng-model="projSelected.datum">
+                        <md-option ng-repeat="crs in geoCRS" ng-value="crs.srid">{{ crs.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label>Projection Type</label>
+                    <md-select ng-model="projSelected.projType">
+                        <md-option ng-repeat="proj in projTypes" ng-value="proj.id">{{ proj.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                    <label>Zone</label>
+                    <md-select ng-model="projSelected.zone" ng-disabled="isGeoCS()">
+                        <md-option ng-repeat="zone in zones" ng-value="zone.id">{{ zone.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Collector</label>
+                    <md-select ng-model="currentStation.properties.collector"
+                               ng-change="formatStationName(currentStation.properties.collector, currentStation.properties.number)">
+                        <md-option ng-repeat="sigla in siglas" ng-value="sigla">{{ sigla.acronym }} - {{ sigla.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex="30" flex-sm="60" flex-md="70" flex-lg="80">
+                    <label>Number</label>
+                    <input type="number" min="1" max="9999" ng-model="currentStation.properties.number"
+                           ng-keyup="formatStationName(currentStation.properties.collector, currentStation.properties.number)">
+                </md-input-container>
+
+                <md-input-container flex="70" flex-sm="40" flex-md="30" flex-lg="20">
+                    <label>Date</label>
+                    <md-datepicker ng-model="currentStation.properties.date" ng-disabled="true"></md-datepicker>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <div layout="column" flex="50">
+                <md-button class="md-raised md-primary" ng-click="answer('marked')" md-autofocus>Mark</md-button>
+            </div>
+            <div layout="column" flex="50">
+                <md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

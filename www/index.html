@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *; img-src data: *"/>
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" type="text/css" href="res/extra-lib/leaflet/leaflet.css">
+
+    <!-- Angular.JS Material -->
+    <link rel="stylesheet" type="text/css" href="res/extra-lib/material/angular-material.min.css">
+
+    <!-- Main APP -->
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+    <title>ng-FieldBook</title>
+</head>
+
+<body ng-app="ng-FieldBook">
+<div ng-controller="uiController" ng-cloak>
+    <!--  Toolbar  -->
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <h2 flex md-truncate>ng-FieldBook @ Carlos Eduardo Mota</h2>
+        </div>
+    </md-toolbar>
+
+    <!--  Sidenav  -->
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" md-disable-close-events>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1 class="md-toolbar-tools">Carlos Mota</h1>
+                <md-button class="md-icon-button" aria-label="Configurações" ng-click="toggleLeft()">
+                    <md-icon md-svg-icon="cancel"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-content layout-margin>
+            <!-- Logged in actions -->
+            <div layout="column" layout-align="start">
+                <a href="#!profile" class="md-button" ng-click="toggleLeft()">Perfil</a>
+                <a href="#!stations" class="md-button" ng-click="toggleLeft()">Estações</a>
+                <a href="#!summaries" class="md-button" ng-click="toggleLeft()">Sumários</a>
+            </div>
+            <md-divider></md-divider>
+            <div layout="column" layout-wrap>
+                <a href="#!navigation" class="md-button" ng-click="toggleLeft()">Navegação</a>
+                <a href="#!device_info" class="md-button" ng-click="toggleLeft()">Informações do dispositivo</a>
+                <a href="#!configurations" class="md-button" ng-click="toggleLeft()">Configurações</a>
+                <a href="#!about" class="md-button" ng-click="toggleLeft()">Sobre</a>
+            </div>
+            <md-divider></md-divider>
+            <div layout="column" layout-wrap>
+                <a href="#!login" class="md-button" ng-click="toggleLeft()">Log In</a>
+                <a href="#!logout" class="md-button" ng-click="toggleLeft()">Log Out</a>
+            </div>
+        </md-content>
+
+    </md-sidenav>
+
+    <!--  Content  -->
+    <md-content flex layout-fill>
+        <div ng-view>
+            <!-- Route views goes here-->
+        </div>
+    </md-content>
+</div>
+
+<!-- Angular.JS -->
+<script type="text/javascript" src="res/extra-lib/angularjs/angular.min.js"></script>
+<script src="res/extra-lib/angularjs/angular-animate.min.js"></script>
+<script src="res/extra-lib/angularjs/angular-aria.min.js"></script>
+<script src="res/extra-lib/angularjs/angular-messages.min.js"></script>
+<script src="res/extra-lib/angularjs/angular-route.min.js"></script>
+
+<!-- Angular.JS Material -->
+<script type="text/javascript" src="res/extra-lib/material/angular-material.min.js"></script>
+
+<!-- ng-cordova -->
+<script type="text/javascript" src="res/extra-lib/ng-cordova/ng-cordova.min.js"></script>
+
+<!-- ng-deviceready -->
+<script type="text/javascript" src="res/extra-lib/ng-deviceready/ng-deviceready.js"></script>
+
+<!-- Leaflet -->
+<script type="text/javascript" src="res/extra-lib/leaflet/leaflet.js"></script>
+
+<!-- Loki.JS -->
+<!--<script type="text/javascript" src="res/extra-lib/lokijs/lokijs.min.js"></script>
+<script type="text/javascript" src="res/extra-lib/lokijs/loki-indexed-adapter.min.js"></script>-->
+
+<!-- Main App -->
+<script type="text/javascript" src="js/index.js"></script>
+
+<!-- services -->
+<!--<script type="text/javascript" src="js/services/crs.service.js"></script>
+<script type="text/javascript" src="js/services/storage.service.js"></script>-->
+
+<!--<script type="text/javascript" src="js/cordova/cordova.navigation_map.directive.js"></script>-->
+
+<script type="text/javascript" src="js/controllers/ui.controller.js"></script>
+<script type="text/javascript" src="js/directives/navigation_map.directive.js"></script>
+
+<!-- Cordova -->
+<script type="text/javascript" src="cordova.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<div style="position: relative">
+    <div id="map"></div>
+
+    <md-fab-speed-dial class="md-fab-bottom-right md-fling" md-direction="up" ng-cloak>
+        <md-fab-trigger>
+            <md-button aria-label="menu" class="md-fab md-primary">
+                <md-icon md-svg-icon="marker"></md-icon>
+            </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions>
+            <md-button aria-label="Capturar no mapa" class="md-fab md-raised md-mini" ng-click="useMapButtonClicked()">
+                <md-icon md-svg-icon="use_map" aria-label="Capturar no mapa"></md-icon>
+            </md-button>
+            <md-button aria-label="Digitar Coordenadas" class="md-fab md-raised md-mini" ng-click="writePositionButtonClicked()">
+                <md-icon md-svg-icon="write" aria-label="Digitar Coordenadas"></md-icon>
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+</div>

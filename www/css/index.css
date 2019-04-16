@@ -1,0 +1,47 @@
+
+#map {
+    height: calc(100vh - 64px);
+    z-index: 20;
+}
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: landscape) {
+    #map {
+        height: calc(100vh - 48px);
+        z-index: 20;
+    }
+}
+
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: portrait) {
+    #map {
+        height: calc(100vh - 56px);
+        z-index: 20;
+    }
+}
+
+
+/* Leaflet */
+.leaflet-control-locate {
+    width: 30px;
+    height: 30px;
+}
+
+.button-marker {
+    position: fixed;
+    right: 5px;
+    bottom: 20px;
+    /*z-index: 1100 !important;*/
+}
+
+
+/***/
+md-bottom-sheet {
+    /*z-index: 1101 !important;*/
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    html {
+    overflow: hidden;
+    }
+}
+
